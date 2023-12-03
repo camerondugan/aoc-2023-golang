@@ -2,15 +2,14 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 )
 
 func validate2(prev []byte, cur []byte, next []byte) int {
-	fmt.Printf("prevLine: %v\n", string(prev))
-	fmt.Printf("currLine: %v\n", string(cur))
-	fmt.Printf("nextLine: %v\n", string(next))
+	// fmt.Printf("prevLine: %v\n", string(prev))
+	// fmt.Printf("currLine: %v\n", string(cur))
+	// fmt.Printf("nextLine: %v\n", string(next))
 
 	sum := 0
 

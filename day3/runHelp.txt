@@ -1,7 +1,6 @@
 # Testing:
 go test
 # Running:
-uncomment in p1 main the print you want
 go run p*.go
 or 
 go run p1.go p2.go

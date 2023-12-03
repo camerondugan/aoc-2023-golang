@@ -44,9 +44,9 @@ func grabIntRange(line []byte, startPos int) (int, int) {
 }
 
 func validate(prev []byte, cur []byte, next []byte) int {
-	fmt.Printf("prevLine: %v\n", string(prev))
-	fmt.Printf("currLine: %v\n", string(cur))
-	fmt.Printf("nextLine: %v\n", string(next))
+	// fmt.Printf("prevLine: %v\n", string(prev))
+	// fmt.Printf("currLine: %v\n", string(cur))
+	// fmt.Printf("nextLine: %v\n", string(next))
 
 	sum := 0
 
@@ -121,6 +121,6 @@ func p1(filename string) int {
 }
 
 func main() {
-	// fmt.Printf("p1(): %v\n", p1("input.txt"))
+	fmt.Printf("p1(): %v\n", p1("input.txt"))
 	fmt.Printf("p2(): %v\n", p2("input.txt"))
 }
