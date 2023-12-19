@@ -46,11 +46,11 @@ func p1(scanner *bufio.Scanner) {
 		if h1 == h2 {
 			for z := 0; z < len(plays[i].hand); z++ {
 				if plays[i].hand[z] != plays[j].hand[z] {
-					return cardValue(plays[i].hand[z]) > cardValue(plays[j].hand[z])
+					return cardValue(plays[i].hand[z]) < cardValue(plays[j].hand[z])
 				}
 			}
 		} else {
-			return h1 > h2
+			return h1 < h2
 		}
 		return true // shouldn't happen but might?
 	})
@@ -60,14 +60,16 @@ func p1(scanner *bufio.Scanner) {
 	for rank, p := range plays {
 		winnings += p.bet * (rank + 1)
 	}
-	fmt.Printf("plays: %v\n", plays)
 	fmt.Printf("winnings: %v\n", winnings)
 }
 
 func getHandType(hand string) int {
-	cardCounts := [5]int{}
 	mainNum := 0
 	secondaryNum := 0
+	// part2 only vvv
+	jokers := strings.Count(hand, "J")
+	hand = strings.ReplaceAll(hand, "J", "")
+	// part2 only ^^^
 	for i, c := range hand {
 		counted := false
 		for j := range hand {
@@ -89,10 +91,31 @@ func getHandType(hand string) int {
 		} else if count > secondaryNum {
 			secondaryNum = count
 		}
-		cardCounts[i] = count
 	}
 
-	return HighCard
+	// part2 only
+	mainNum += jokers
+
+	switch mainNum {
+	case 5:
+		return FiveOfAKind
+	case 4:
+		return FourOfAKind
+	case 3:
+		if secondaryNum == 2 {
+			return FullHouse
+		} else {
+			return ThreeOfAKind
+		}
+	case 2:
+		if secondaryNum == 2 {
+			return TwoPair
+		} else {
+			return OnePair
+		}
+	default:
+		return HighCard
+	}
 }
 
 func cardValue(card byte) int {
@@ -107,14 +130,11 @@ func cardValue(card byte) int {
 		case 'Q':
 			return 12
 		case 'J':
-			return 11
+			return 1 // joker for p2
 		default: // T
 			return 10
 		}
 	}
-}
-
-func p2(scanner *bufio.Scanner) {
 }
 
 func check(e error) {
@@ -124,10 +144,8 @@ func check(e error) {
 }
 
 func main() {
-	file, err := os.Open("example.txt")
+	file, err := os.Open("input.txt")
 	check(err)
 	scanner := bufio.NewScanner(file)
 	p1(scanner)
-	scanner = bufio.NewScanner(file)
-	p2(scanner)
 }

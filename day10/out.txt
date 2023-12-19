@@ -1,0 +1,13 @@
+...........
+.S-------7.
+.|F-----7|.
+.||OOOOO||.
+.||OOOOO||.
+.|L-7OF-J|.
+.|II|O|II|.
+.L--JOL--J.
+.....O.....
+maxDist: 23
+Horizontal finished
+Horizontal finished
+inside: 54
